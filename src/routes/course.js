@@ -173,7 +173,7 @@ router.get(
   "/featured",
   optionalAuth,
   asyncHandler(async (req, res) => {
-    const limit = parseInt(req.query.limit) || 6;
+    const limit = Math.max(1, Math.min(50, parseInt(req.query.limit) || 6));
 
     const result = await query(
       `SELECT
@@ -222,7 +222,7 @@ router.get(
   "/popular",
   optionalAuth,
   asyncHandler(async (req, res) => {
-    const limit = parseInt(req.query.limit) || 6;
+    const limit = Math.max(1, Math.min(50, parseInt(req.query.limit) || 6));
 
     const result = await query(
       `SELECT
